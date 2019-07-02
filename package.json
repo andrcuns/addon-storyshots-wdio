@@ -15,8 +15,11 @@
     "url": "https://github.com/storybookjs/storybook.git",
     "directory": "addons/storyshots/storyshots-puppeteer"
   },
+  "scripts": {
+    "build": "babel src -d lib"
+  },
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "jsnext:main": "src/index.js",
   "dependencies": {
     "@storybook/node-logger": "5.1.9",
@@ -31,5 +34,10 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5"
   }
 }
