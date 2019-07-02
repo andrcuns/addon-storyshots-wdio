@@ -1,21 +1,24 @@
-import puppeteer from 'puppeteer';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 import { logger } from '@storybook/node-logger';
+import { remote } from 'webdriverio';
 import { constructUrl } from './url';
+
 
 expect.extend({ toMatchImageSnapshot });
 
-// We consider taking the full page is a reasonnable default.
-const defaultScreenshotOptions = () => ({ fullPage: true });
-
-const noop = () => {};
-const asyncNoop = async () => {};
+const defaultRemoteOptions = {
+  logLevel: 'error',
+  capabilities: {
+    browserName: 'chrome',
+  },
+};
+const noop = () => { };
+const asyncNoop = async () => { };
 
 const defaultConfig = {
   storybookUrl: 'http://localhost:6006',
-  chromeExecutablePath: undefined,
+  remoteOptions: defaultRemoteOptions,
   getMatchOptions: noop,
-  getScreenshotOptions: defaultScreenshotOptions,
   beforeScreenshot: noop,
   getGotoOptions: noop,
   customizePage: asyncNoop,
@@ -25,77 +28,56 @@ const defaultConfig = {
 export const imageSnapshot = (customConfig = {}) => {
   const {
     storybookUrl,
-    chromeExecutablePath,
+    remoteOptions,
     getMatchOptions,
-    getScreenshotOptions,
     beforeScreenshot,
-    getGotoOptions,
     customizePage,
     getCustomBrowser,
   } = { ...defaultConfig, ...customConfig };
 
-  let browser; // holds ref to browser. (ie. Chrome)
-  let page; // Hold ref to the page to screenshot.
+  let browser;
 
   const testFn = async ({ context }) => {
     const { kind, framework, name } = context;
     if (framework === 'rn') {
       // Skip tests since we de not support RN image snapshots.
-      logger.error(
-        "It seems you are running imageSnapshot on RN app and it's not supported. Skipping test."
-      );
+      logger.error("It seems you are running imageSnapshot on RN app and it's not supported. Skipping test.");
 
       return;
     }
     const url = constructUrl(storybookUrl, kind, name);
 
-    if (!browser || !page) {
-      logger.error(
-        `Error when generating image snapshot for test ${kind} - ${name} : It seems the headless browser is not running.`
-      );
-
-      throw new Error('no-headless-browser-running');
+    if (!browser) {
+      logger.error(`Error when generating image snapshot for test ${kind} - ${name} : browser object is missing.`);
+      throw new Error('no-browser-running');
     }
 
     expect.assertions(1);
 
     let image;
     try {
-      await customizePage(page);
-      await page.goto(url, getGotoOptions({ context, url }));
-      await beforeScreenshot(page, { context, url });
-      image = await page.screenshot(getScreenshotOptions({ context, url }));
+      await customizePage(browser);
+      await browser.url(url);
+      await beforeScreenshot(browser, { context, url });
+      image = await browser.takeScreenshot();
     } catch (e) {
-      logger.error(
-        `Error when connecting to ${url}, did you start or build the storybook first? A storybook instance should be running or a static version should be built when using image snapshot feature.`,
-        e
-      );
+      logger.error(`Error when connecting to ${url}, did you start or build the storybook first?`, e);
       throw e;
     }
 
     expect(image).toMatchImageSnapshot(getMatchOptions({ context, url }));
   };
 
-  testFn.afterAll = () => {
-    if (getCustomBrowser && page) {
-      return page.close();
-    }
-
-    return browser.close();
+  testFn.afterAll = async () => {
+    await browser.deleteSession();
   };
 
   testFn.beforeAll = async () => {
     if (getCustomBrowser) {
       browser = await getCustomBrowser();
     } else {
-      // add some options "no-sandbox" to make it work properly on some Linux systems as proposed here: https://github.com/Googlechrome/puppeteer/issues/290#issuecomment-322851507
-      browser = await puppeteer.launch({
-        args: ['--no-sandbox ', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-        executablePath: chromeExecutablePath,
-      });
+      browser = await remote(remoteOptions);
     }
-
-    page = await browser.newPage();
   };
 
   return testFn;

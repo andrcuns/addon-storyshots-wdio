@@ -1,0 +1,29 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 120,
+                "ignoreUrls": true
+            }
+        ],
+        "import/prefer-default-export": "off",
+        "object-curly-newline": "off"
+    },
+    "globals": {
+        "browser": false,
+        "$": false,
+        "$$": false,
+        "expect": false
+    },
+    "env": {
+        "mocha": true,
+        "node": true,
+        "es6": true
+    }
+}

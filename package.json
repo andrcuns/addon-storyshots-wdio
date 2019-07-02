@@ -16,7 +16,7 @@
     "directory": "addons/storyshots/storyshots-puppeteer"
   },
   "scripts": {
-    "build": "babel src -d lib"
+    "preinstall": "babel src -d lib"
   },
   "license": "MIT",
   "main": "lib/index.js",
@@ -26,8 +26,8 @@
     "@storybook/router": "5.1.9",
     "core-js": "^3.0.1",
     "jest-image-snapshot": "^2.8.2",
-    "puppeteer": "^1.12.2",
-    "regenerator-runtime": "^0.12.1"
+    "regenerator-runtime": "^0.12.1",
+    "webdriverio": "^5.10.9"
   },
   "peerDependencies": {
     "@storybook/addon-storyshots": "5.1.9"
@@ -38,6 +38,9 @@
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5"
+    "@babel/preset-env": "^7.4.5",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0"
   }
 }
