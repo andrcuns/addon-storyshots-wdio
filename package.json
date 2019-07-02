@@ -22,6 +22,8 @@
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
   "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
     "@storybook/node-logger": "5.1.9",
     "@storybook/router": "5.1.9",
     "core-js": "^3.0.1",
@@ -36,8 +38,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.2.0",
