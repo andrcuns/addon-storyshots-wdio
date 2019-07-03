@@ -1,9 +1,14 @@
+# storyshots-wdio
+
+Adaptation of [storyshots-puppeteer](https://github.com/storybookjs/storybook/tree/next/addons/storyshots/storyshots-puppeteer)
+addon which uses [WebdriverIO](https://webdriver.io/) for a wider browser support.
+
 ## Getting Started
 
 Add the following module into your app.
 
 ```sh
-npm install @storybook/addon-storyshots-puppeteer --save-dev
+yarn add --dev addon-storyshots-wdio
 ```
 
 ## Configure Storyshots for image snapshots
@@ -14,8 +19,8 @@ Internally, it uses [jest-image-snapshot](https://github.com/americanexpress/jes
 
 When willing to generate and compare image snapshots for your stories, you have two options:
 
-- Have a storybook running (ie. accessible via http(s), for instance using `npm run storybook`)
-- Have a static build of the storybook (for instance, using `npm run build-storybook`)
+- Have a storybook running (ie. accessible via http(s), for instance using `yarn storybook`)
+- Have a static build of the storybook (for instance, using `yarn build-storybook`)
 
 Then you will need to reference the storybook URL (`file://...` if local, `http(s)://...` if served)
 
@@ -25,7 +30,7 @@ Then you can either create a new Storyshots instance or edit the one you previou
 
 ```js
 import initStoryshots from '@storybook/addon-storyshots';
-import { imageSnapshot } from '@storybook/addon-storyshots-puppeteer';
+import { imageSnapshot } from 'addon-storyshots-wdio';
 
 initStoryshots({ suite: 'Image storyshots', test: imageSnapshot() });
 ```
@@ -33,7 +38,7 @@ initStoryshots({ suite: 'Image storyshots', test: imageSnapshot() });
 This will assume you have a storybook running on at _<http://localhost:6006>_.
 Internally here are the steps:
 
-- Launches a Chrome headless using [puppeteer](https://github.com/GoogleChrome/puppeteer)
+- Launches instances of remote web driver using [WebdriverIO](https://webdriver.io/)
 - Browses each stories (calling _<http://localhost:6006/iframe.html?...>_ URL),
 - Take screenshots & save all images under \_\_image_snapshots\_\_ folder.
 
@@ -43,7 +48,7 @@ If you want to set specific storybook URL, you can specify via the `storybookUrl
 
 ```js
 import initStoryshots from '@storybook/addon-storyshots';
-import { imageSnapshot } from '@storybook/addon-storyshots-puppeteer';
+import { imageSnapshot } from 'addon-storyshots-wdio';
 
 initStoryshots({
   suite: 'Image storyshots',
@@ -57,7 +62,7 @@ You may also use a local static build of storybook if you do not want to run the
 
 ```js
 import initStoryshots from '@storybook/addon-storyshots';
-import { imageSnapshot } from '@storybook/addon-storyshots-puppeteer';
+import { imageSnapshot } from 'addon-storyshots-wdio';
 
 initStoryshots({
   suite: 'Image storyshots',
@@ -71,7 +76,7 @@ If you wish to customize [jest-image-snapshot](https://github.com/americanexpres
 
 ```js
 import initStoryshots from '@storybook/addon-storyshots';
-import { imageSnapshot } from '@storybook/addon-storyshots-puppeteer';
+import { imageSnapshot } from 'addon-storyshots-wdio';
 const getMatchOptions = ({ context: { kind, story }, url }) => {
   return {
     failureThreshold: 0.2,
@@ -93,104 +98,53 @@ initStoryshots({
 
 `getMatchOptions` receives an object: `{ context: {kind, story}, url}`. _kind_ is the kind of the story and the _story_ its name. _url_ is the URL the browser will use to screenshot.
 
-`beforeScreenshot` receives the [Puppeteer page instance](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page) and an object: `{ context: {kind, story}, url}`. _kind_ is the kind of the story and the _story_ its name. _url_ is the URL the browser will use to screenshot. `beforeScreenshot` is part of the promise chain and is called after the browser navigation is completed but before the screenshot is taken. It allows for triggering events on the page elements and delaying the screenshot and can be used avoid regressions due to mounting animations.
+`beforeScreenshot` receives the [WebdriverIO browser instance](https://webdriver.io/docs/api.html) and an object: `{ context: {kind, story}, url}`. _kind_ is the kind of the story and the _story_ its name. _url_ is the URL the browser will use to screenshot. `beforeScreenshot` is part of the promise chain and is called after the browser navigation is completed but before the screenshot is taken. It allows for triggering events on the page elements and delaying the screenshot and can be used avoid regressions due to mounting animations.
 
-### Specifying options to _goto()_ (puppeteer API)
+### Specifying custom browser options (WebdriverIO)
 
-You might use `getGotoOptions` to specify options when the storybook is navigating to a story (using the `goto` method). Will be passed to [Puppeteer .goto() fn](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagegotourl-options)
-
-```js
-import initStoryshots from '@storybook/addon-storyshots';
-import { imageSnapshot } from '@storybook/addon-storyshots-puppeteer';
-const getGotoOptions = ({ context, url }) => {
-  return {
-    waitUntil: 'networkidle0',
-  };
-};
-initStoryshots({
-  suite: 'Image storyshots',
-  test: imageSnapshot({ storybookUrl: 'http://localhost:6006', getGotoOptions }),
-});
-```
-
-### Specifying options to _screenshot()_ (puppeteer API)
-
-You might use `getScreenshotOptions` to specify options for screenshot. Will be passed to [Puppeteer .screenshot() fn](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagescreenshotoptions)
+You might want to use different options for the instance of browser object.
 
 ```js
 import initStoryshots from '@storybook/addon-storyshots';
-import { imageSnapshot } from '@storybook/addon-storyshots-puppeteer';
-const getScreenshotOptions = ({context, url}) => {
-  return {
-    fullPage: false // Do not take the full page screenshot. Default is 'true' in Storyshots.
+import { imageSnapshot } from 'addon-storyshots-wdio';
+
+const browserOptions = {
+  logLevel: 'error',
+  path: '/', // remove `path` if you decided using something different from driver binaries.
+  capabilities: {
+    browserName: 'firefox'
   }
 }
-initStoryshots({suite: 'Image storyshots', test: imageSnapshot({storybookUrl: 'http://localhost:6006', getScreenshotOptions})});
-```
-
-`getScreenshotOptions` receives an object `{ context: {kind, story}, url}`. _kind_ is the kind of the story and the _story_ its name. _url_ is the URL the browser will use to screenshot.
-
-### Specifying custom Chrome executable path (puppeteer API)
-
-You might use `chromeExecutablePath` to specify the path to a different version of Chrome, without downloading Chromium. Will be passed to [Runs a bundled version of Chromium](https://github.com/GoogleChrome/puppeteer#default-runtime-settings)
-
-```js
-import initStoryshots from '@storybook/addon-storyshots';
-import { imageSnapshot } from '@storybook/addon-storyshots-puppeteer';
-
-const chromeExecutablePath = '/usr/local/bin/chrome';
 
 initStoryshots({
   suite: 'Image storyshots',
-  test: imageSnapshot({ storybookUrl: 'http://localhost:6006', chromeExecutablePath }),
+  test: imageSnapshot({ storybookUrl: 'http://localhost:6006', browserOptions }),
 });
 ```
 
-### Specifying a custom puppeteer `browser` instance
+### Specifying a custom WebdriverIO `browser` instance (WebdriverIO)
 
-You might use the async `getCustomBrowser` function to obtain a custom instance of a puppeteer `browser` object. This will prevent `storyshots-puppeteer` from creating its own `browser`. It will create and close pages within the `browser`, and it is your responsibility to manage the lifecycle of the `browser` itself.
+You might use the async `getCustomBrowser` function to obtain a custom instance of a WebdriverIO `browser` object. This will prevent `storyshots-wdio` from creating its own `browser`.
 
 ```js
 import initStoryshots from '@storybook/addon-storyshots';
-import { imageSnapshot } from '@storybook/addon-storyshots-puppeteer';
+import { imageSnapshot } from 'addon-storyshots-wdio';
 import puppeteer from 'puppeteer';
 
 (async function() {
     initStoryshots({
       suite: 'Image storyshots',
-      test: imageSnapshot({ 
-        storybookUrl: 'http://localhost:6006', 
-        getCustomBrowser: async () => puppeteer.connect('ws://yourUrl')
-      }),
+      test: imageSnapshot({
+        storybookUrl: 'http://localhost:6006',
+        getCustomBrowser: () => remote({
+          logLevel: 'trace',
+          capabilities: {
+              browserName: 'chrome'
+          }
+        }),
+      })
     });
 })();
-```
-
-
-### Customizing a `page` instance
-
-Sometimes, there is a need to customize a page before it calls the `goto` api.
-
-An example of device emulation:
-
-```js
-import initStoryshots from '@storybook/addon-storyshots';
-import { imageSnapshot } from '@storybook/addon-storyshots-puppeteer';
-const devices = require('puppeteer/DeviceDescriptors');
-
-const iPhone = devices['iPhone 6'];
-
-function customizePage(page) {
-  return page.emulate(iPhone);
-}
-
-initStoryshots({
-  suite: 'Image storyshots',
-  test: imageSnapshot({
-    storybookUrl: 'http://localhost:6006',
-    customizePage,
-  }),
-});
 ```
 
 ### Integrate image storyshots with regular app
@@ -220,16 +174,16 @@ You have two options here, you can either:
 
   Note that you will certainly need a custom config file for Jest as you run it outside of the CRA scope and thus you do not have the built-in config.
 
-  Once that's setup, you can run `npm run image-snapshots`.
+  Once that's setup, you can run `yarn image-snapshots`.
 
 ### Reminder
 
-An image snapshot is simply a screenshot taken by a web browser (in our case, Chrome).
+An image snapshot is simply a screenshot taken by a web browser.
 
 The browser opens a page (either using the static build of storybook or a running instance of Storybook)
 
 If you run your test without either the static build or a running instance, this wont work.
 
 To make sure your screenshots are taken from latest changes of your Storybook, you must keep your static build or running Storybook up-to-date.
-This can be achieved by adding a step before running the test ie: `npm run build-storybook && npm run image-snapshots`.
+This can be achieved by adding a step before running the test ie: `yarn build-storybook && yarn image-snapshots`.
 If you run the image snapshots against a running Storybook in dev mode, you don't have to worry about the snapshots being up-to-date because the dev-server is watching changes and rebuilds automatically.

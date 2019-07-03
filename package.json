@@ -1,29 +1,34 @@
 {
-  "name": "@storybook/addon-storyshots-wdio",
+  "name": "addon-storyshots-wdio",
   "version": "5.1.9",
-  "description": "Image snappshots addition to StoryShots base on puppeteer",
+  "description": "Image snappshots addition to StoryShots base on WebdriverIO",
   "keywords": [
     "addon",
-    "storybook"
+    "storybook",
+    "webdriverio"
   ],
-  "homepage": "https://github.com/storybookjs/storybook/tree/master/addons/storyshots/storyshots-puppeteer",
+  "author": "Andrejs Cunskis",
+  "files": [
+    "src",
+    "lib"
+  ],
+  "homepage": "https://github.com/andrcuns/addon-storyshots-wdio",
   "bugs": {
-    "url": "https://github.com/storybookjs/storybook/issues"
+    "url": "https://github.com/andrcuns/addon-storyshots-wdio/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/storybookjs/storybook.git",
-    "directory": "addons/storyshots/storyshots-puppeteer"
+    "url": "https://github.com/andrcuns/addon-storyshots-wdio.git"
   },
   "scripts": {
-    "preinstall": "babel src -d lib"
+    "clean": "rimraf lib",
+    "lint": "eslint src tests",
+    "test": "jest",
+    "build": "babel src -d lib"
   },
   "license": "MIT",
   "main": "lib/index.js",
-  "jsnext:main": "src/index.js",
   "dependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
     "@storybook/node-logger": "5.1.9",
     "@storybook/router": "5.1.9",
     "core-js": "^3.0.1",
@@ -34,13 +39,14 @@
   "peerDependencies": {
     "@storybook/addon-storyshots": "5.1.9"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-plugin-import": "^2.18.0"
+    "eslint-plugin-import": "^2.18.0",
+    "jest": "^24.8.0",
+    "rimraf": "^2.6.3"
   }
 }

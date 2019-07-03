@@ -6,32 +6,29 @@ import { constructUrl } from './url';
 
 expect.extend({ toMatchImageSnapshot });
 
-const defaultRemoteOptions = {
+const defaultBrowserOptions = {
   logLevel: 'error',
   capabilities: {
     browserName: 'chrome',
   },
 };
 const noop = () => { };
-const asyncNoop = async () => { };
 
 const defaultConfig = {
   storybookUrl: 'http://localhost:6006',
-  remoteOptions: defaultRemoteOptions,
+  browserOptions: defaultBrowserOptions,
   getMatchOptions: noop,
   beforeScreenshot: noop,
   getGotoOptions: noop,
-  customizePage: asyncNoop,
   getCustomBrowser: undefined,
 };
 
 export const imageSnapshot = (customConfig = {}) => {
   const {
     storybookUrl,
-    remoteOptions,
+    browserOptions,
     getMatchOptions,
     beforeScreenshot,
-    customizePage,
     getCustomBrowser,
   } = { ...defaultConfig, ...customConfig };
 
@@ -56,7 +53,6 @@ export const imageSnapshot = (customConfig = {}) => {
 
     let image;
     try {
-      await customizePage(browser);
       await browser.url(url);
       await beforeScreenshot(browser, { context, url });
       image = await browser.takeScreenshot();
@@ -76,7 +72,7 @@ export const imageSnapshot = (customConfig = {}) => {
     if (getCustomBrowser) {
       browser = await getCustomBrowser();
     } else {
-      browser = await remote(remoteOptions);
+      browser = await remote(browserOptions);
     }
   };
 

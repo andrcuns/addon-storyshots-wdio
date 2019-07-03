@@ -1,4 +1,4 @@
-import { constructUrl } from '../url';
+import { constructUrl } from '../src/url';
 
 describe('Construct URL for Storyshots', () => {
   it('can use a url without path and without query params', () => {
