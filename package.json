@@ -29,15 +29,15 @@
   "license": "MIT",
   "main": "lib/index.js",
   "dependencies": {
-    "@storybook/node-logger": "5.1.9",
-    "@storybook/router": "5.1.9",
+    "@storybook/node-logger": "^5.1.9",
+    "@storybook/router": "^5.1.9",
     "core-js": "^3.0.1",
     "jest-image-snapshot": "^2.8.2",
     "regenerator-runtime": "^0.12.1",
     "webdriverio": "^5.10.9"
   },
   "peerDependencies": {
-    "@storybook/addon-storyshots": "5.1.9"
+    "@storybook/addon-storyshots": "^5.1.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

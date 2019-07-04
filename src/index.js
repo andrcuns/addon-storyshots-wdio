@@ -19,6 +19,7 @@ const defaultConfig = {
   browserOptions: defaultBrowserOptions,
   getMatchOptions: noop,
   beforeScreenshot: noop,
+  afterTest: noop,
   getGotoOptions: noop,
   getCustomBrowser: undefined,
 };
@@ -29,6 +30,7 @@ export const imageSnapshot = (customConfig = {}) => {
     browserOptions,
     getMatchOptions,
     beforeScreenshot,
+    afterTest,
     getCustomBrowser,
   } = { ...defaultConfig, ...customConfig };
 
@@ -51,17 +53,20 @@ export const imageSnapshot = (customConfig = {}) => {
 
     expect.assertions(1);
 
-    let image;
-    try {
-      await browser.url(url);
-      await beforeScreenshot(browser, { context, url });
-      image = await browser.takeScreenshot();
-    } catch (e) {
-      logger.error(`Error when connecting to ${url}, did you start or build the storybook first?`, e);
-      throw e;
-    }
+    let failed = false;
 
-    expect(image).toMatchImageSnapshot(getMatchOptions({ context, url }));
+    await browser.url(url);
+    await beforeScreenshot(browser, { context, url });
+    const image = await browser.takeScreenshot();
+
+    try {
+      expect(image).toMatchImageSnapshot(getMatchOptions({ context, url }));
+    } catch (error) {
+      failed = true;
+      throw error;
+    } finally {
+      await afterTest({ failed, browser, image, context, url });
+    }
   };
 
   testFn.afterAll = async () => {

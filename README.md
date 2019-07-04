@@ -129,7 +129,6 @@ You might use the async `getCustomBrowser` function to obtain a custom instance 
 ```js
 import initStoryshots from '@storybook/addon-storyshots';
 import { imageSnapshot } from 'addon-storyshots-wdio';
-import puppeteer from 'puppeteer';
 
 (async function() {
     initStoryshots({
@@ -142,6 +141,31 @@ import puppeteer from 'puppeteer';
               browserName: 'chrome'
           }
         }),
+      })
+    });
+})();
+```
+
+### Specifying a custom after test function
+
+You might need a function which is executed after image comparison and has access to test result, browser object and current image
+to attach it to some kind of report or something similar. For that you might use `afterTest` function. `afterTest` receives and object
+`{ failed, browser, image, context, url }` which can be used for a custom action after test.
+
+```js
+import initStoryshots from '@storybook/addon-storyshots';
+import { imageSnapshot } from 'addon-storyshots-wdio';
+
+(async function() {
+    initStoryshots({
+      suite: 'Image storyshots',
+      test: imageSnapshot({
+        storybookUrl: 'http://localhost:6006',
+        afterTest: ({ failed, image, context: { id } }) => {
+          if (failed) {
+            fs.writeFile(getCurrentSnapshot(`${id}.png`), Buffer.from(image, 'base64'));
+          }
+        ),
       })
     });
 })();
