@@ -24,7 +24,7 @@
     "clean": "rimraf lib",
     "lint": "eslint src tests",
     "test": "jest",
-    "build": "babel src -d lib"
+    "build": "rimraf lib && babel src -d lib"
   },
   "license": "MIT",
   "main": "lib/index.js",

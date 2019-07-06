@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "12"
+
+cache: yarn
+
+jobs:
+  include:
+    - stage: Test
+      script: yarn lint && yarn test
+    - stage: Release
+      script: yarn build
+      deploy:
+        provider: npm
+        email: "$NPM_EMAIL"
+        api_key:
+          secure: "$NPM_TOKEN"
+        on:
+          tags: true
+          skip_cleanup: true
