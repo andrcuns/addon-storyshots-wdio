@@ -10,8 +10,7 @@ before_deploy:
 deploy:
   provider: npm
   email: "$NPM_EMAIL"
-  api_key:
-    secure: "$NPM_TOKEN"
+  api_key: "$NPM_TOKEN"
+  skip_cleanup: true
   on:
     tags: true
-    skip_cleanup: true
