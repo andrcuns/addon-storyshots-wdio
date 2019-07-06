@@ -22,9 +22,9 @@
   },
   "scripts": {
     "clean": "rimraf lib",
+    "build": "babel src -d lib",
     "lint": "eslint src tests",
-    "test": "jest",
-    "build": "rimraf lib && babel src -d lib"
+    "test": "jest"
   },
   "license": "MIT",
   "main": "lib/index.js",
