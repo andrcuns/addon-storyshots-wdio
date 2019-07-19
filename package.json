@@ -33,7 +33,7 @@
     "@storybook/router": "^5.1.9",
     "core-js": "^3.0.1",
     "jest-image-snapshot": "^2.8.2",
-    "regenerator-runtime": "^0.12.1",
+    "regenerator-runtime": "^0.13.3",
     "webdriverio": "^5.10.9"
   },
   "peerDependencies": {
