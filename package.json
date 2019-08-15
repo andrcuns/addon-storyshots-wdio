@@ -47,6 +47,6 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.0",
     "jest": "^24.8.0",
-    "rimraf": "^2.6.3"
+    "rimraf": "^3.0.0"
   }
 }
