@@ -821,9 +821,9 @@
     warning "^3.0.0"
 
 "@storybook/node-logger@^5.1.9":
-  version "5.1.10"
-  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.1.10.tgz#92c80b46177687cd8fda1f93a055c22711984154"
-  integrity sha512-Z4UKh7QBOboQhUF5S/dKOx3OWWCNZGwYu8HZa/O+P68+XnQDhuZCYwqWG49xFhZd0Jb0W9gdUL2mWJw5POG9PA==
+  version "5.1.11"
+  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.1.11.tgz#bbf5ad0d148e6c9a9b7cf6f62ad4df4e9fa19e5d"
+  integrity sha512-LG0KM4lzb9LEffcO3Ps9FcHHsVgQUc/oG+kz3p0u9fljFoL3cJHF1Mb4o+HrSydtdWZs/spwZ/BLEo5n/AByDw==
   dependencies:
     chalk "^2.4.2"
     core-js "^3.0.1"
