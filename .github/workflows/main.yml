@@ -1,10 +1,13 @@
-name: Test
+name: Test and Publish
 
 on:
   pull_request:
+    branches:
+      - master
   push:
     branches:
       - master
+  release:
 
 jobs:
   test:
@@ -21,3 +24,8 @@ jobs:
         run: yarn lint
       - name: Test
         run: yarn test
+      - name: Publish
+        run: yarn publish
+        if: github.event_name == 'release' && github.event.action == 'published' && success()
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
