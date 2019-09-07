@@ -3,7 +3,6 @@ name: Publish
 on:
   push:
     tags:
-      - v
 
 jobs:
   publish-npm:
