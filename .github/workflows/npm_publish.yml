@@ -3,6 +3,7 @@ name: Publish
 on:
   push:
     tags:
+      - v
 
 jobs:
   publish-npm:
@@ -14,10 +15,11 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
+      - name: Install
+        run: yarn install
+      - name: Build
+        run: yarn build
       - name: Publish
-        run: |
-          yarn install
-          yarn build
-          yarn publish
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
