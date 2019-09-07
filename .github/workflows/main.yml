@@ -1,13 +1,13 @@
 name: Test and Publish
 
 on:
+  release:
   pull_request:
     branches:
       - master
   push:
     branches:
       - master
-  release:
 
 jobs:
   test:
