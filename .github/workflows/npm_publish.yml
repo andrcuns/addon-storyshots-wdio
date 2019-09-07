@@ -16,6 +16,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Publish
         run: |
+          yarn install
           yarn build
           yarn publish
         env:
