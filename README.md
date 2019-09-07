@@ -1,6 +1,7 @@
 # storyshots-wdio
 
 ![Workflow status](https://github.com/andrcuns/addon-storyshots-wdio/workflows/Test%20and%20Publish/badge.svg)
+![Version](https://badge.fury.io/js/addon-storyshots-wdio.svg)
 
 Adaptation of [storyshots-puppeteer](https://github.com/storybookjs/storybook/tree/next/addons/storyshots/storyshots-puppeteer)
 addon which uses [WebdriverIO](https://webdriver.io/) for a wider browser support.
