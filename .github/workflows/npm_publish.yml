@@ -1,4 +1,4 @@
-name: Node package test
+name: Publish
 
 on:
   tags:
