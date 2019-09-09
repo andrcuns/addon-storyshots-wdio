@@ -2,6 +2,7 @@
 
 ![Workflow status](https://github.com/andrcuns/addon-storyshots-wdio/workflows/Test%20and%20Publish/badge.svg)
 ![Version](https://badge.fury.io/js/addon-storyshots-wdio.svg)
+![npm](https://img.shields.io/npm/dm/addon-storyshots-wdio.svg)
 
 Adaptation of [storyshots-puppeteer](https://github.com/storybookjs/storybook/tree/next/addons/storyshots/storyshots-puppeteer)
 addon which uses [WebdriverIO](https://webdriver.io/) for a wider browser support.
@@ -202,6 +203,10 @@ You have two options here, you can either:
   Note that you will certainly need a custom config file for Jest as you run it outside of the CRA scope and thus you do not have the built-in config.
 
   Once that's setup, you can run `yarn image-snapshots`.
+
+### Example
+
+A fully running example can be seen in [storyshots.test.js](integration/storyshots/storyshots.test.js)
 
 ### Reminder
 

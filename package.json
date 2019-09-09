@@ -23,12 +23,16 @@
   "scripts": {
     "clean": "rimraf lib",
     "build": "babel src -d lib",
-    "lint": "eslint src tests",
-    "test": "jest"
+    "lint": "eslint src tests integration",
+    "test": "jest tests/url.test.js",
+    "integration-test": "jest --config integration/storyshots/jest.config.js",
+    "storybook": "start-storybook -p 6006 -c integration/storybook",
+    "build-storybook": "build-storybook -c integration/storybook -o .storybook"
   },
   "license": "MIT",
   "main": "lib/index.js",
   "dependencies": {
+    "@storybook/addon-storyshots": "^5.1.11",
     "@storybook/node-logger": "^5.1.9",
     "@storybook/router": "^5.1.9",
     "core-js": "^3.0.1",
@@ -36,17 +40,24 @@
     "regenerator-runtime": "^0.13.3",
     "webdriverio": "^5.10.9"
   },
-  "peerDependencies": {
-    "@storybook/addon-storyshots": "^5.1.9"
-  },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
+    "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@storybook/react": "^5.1.11",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "chromedriver": "^76.0.1",
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-react": "^7.14.3",
     "jest": "^24.8.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-test-renderer": "^16.9.0",
     "rimraf": "^3.0.0"
   }
 }
