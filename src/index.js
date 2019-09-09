@@ -70,7 +70,7 @@ export const imageSnapshot = (customConfig = {}) => {
   };
 
   testFn.afterAll = async () => {
-    await browser.deleteSession();
+    if (browser) await browser.deleteSession();
   };
 
   testFn.beforeAll = async () => {
