@@ -1,5 +1,28 @@
 {
-    "extends": "airbnb-base",
+    "extends": [
+        "airbnb-base",
+        "plugin:react/recommended"
+    ],
+    "parser": "babel-eslint",
+    "globals": {
+        "browser": false,
+        "$": false,
+        "$$": false,
+        "expect": false
+    },
+    "env": {
+        "mocha": true,
+        "node": true,
+        "es6": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
     "rules": {
         "indent": [
             "error",
@@ -13,17 +36,15 @@
             }
         ],
         "import/prefer-default-export": "off",
-        "object-curly-newline": "off"
-    },
-    "globals": {
-        "browser": false,
-        "$": false,
-        "$$": false,
-        "expect": false
-    },
-    "env": {
-        "mocha": true,
-        "node": true,
-        "es6": true
+        "object-curly-newline": "off",
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": [
+                    "integration/**/*",
+                    "tests/**/*"
+                ]
+            }
+        ]
     }
 }
