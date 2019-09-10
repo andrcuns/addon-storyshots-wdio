@@ -1,13 +1,13 @@
 name: Test and Publish
 
 on:
-  release:
   pull_request:
     branches:
       - master
   push:
     branches:
       - master
+    tags:
 
 jobs:
   test:
@@ -28,6 +28,6 @@ jobs:
         run: ./integration-test.sh
       - name: Publish
         run: yarn publish
-        if: github.event_name == 'release' && github.event.action == 'published' && success()
+        if: contains(github.ref, 'refs/tags') && success()
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
