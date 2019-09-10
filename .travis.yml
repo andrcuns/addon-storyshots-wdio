@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "12"
+
+cache: yarn
+
+addons:
+  chrome: stable
+
+jobs:
+  include:
+    - stage: integration test
+      script: |
+        yarn build-storybook
+        yarn integration-test

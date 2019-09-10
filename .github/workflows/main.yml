@@ -24,10 +24,6 @@ jobs:
         run: yarn lint
       - name: Unit test
         run: yarn test
-      - name: Integration test
-        run: |
-          yarn build-storybook
-          yarn integration-test
       - name: Publish
         run: yarn publish
         if: github.event_name == 'release' && github.event.action == 'published' && success()
