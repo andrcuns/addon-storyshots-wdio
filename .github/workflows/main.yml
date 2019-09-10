@@ -26,8 +26,12 @@ jobs:
         run: yarn test
       - name: Integration test
         run: ./integration-test.sh
-      - name: Publish
-        run: yarn publish
-        if: contains(github.ref, 'refs/tags') && success()
+      - name: Dump GitHub context
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      # - name: Publish
+        # run: yarn publish
+        # if: contains(github.ref, 'refs/tags') && success()
+        # env:
+        #   NODE_AUTH_TOKEN: ${{secrets.npm_token}}
