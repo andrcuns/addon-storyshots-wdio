@@ -1533,7 +1533,7 @@
     semver "^6.0.0"
     webpack "^4.33.0"
 
-"@storybook/router@5.2.1":
+"@storybook/router@5.2.1", "@storybook/router@^5.1.9":
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/@storybook/router/-/router-5.2.1.tgz#9c49df79343d3be10c7f984858fb5c9ae3eb7491"
   integrity sha512-Mlk275cyPoKtnP4DwQ5D8gTfnaRPL6kDZOSn0wbTMa6pQOfYKgJsa7tjzeAtZuZ/j8hKI4gAfT/auMgH6g+94A==
@@ -1543,17 +1543,6 @@
     core-js "^3.0.1"
     global "^4.3.2"
     lodash "^4.17.11"
-    memoizerific "^1.11.3"
-    qs "^6.6.0"
-
-"@storybook/router@^5.1.9":
-  version "5.1.11"
-  resolved "https://registry.yarnpkg.com/@storybook/router/-/router-5.1.11.tgz#75089e9e623482e52ed894c3f0cb0fc6a5372da9"
-  integrity sha512-Xt7R1IOWLlIxis6VKV9G8F+e/G4G8ng1zXCqoDq+/RlWzlQJ5ccO4bUm2/XGS1rEgY4agMzmzjum18HoATpLGA==
-  dependencies:
-    "@reach/router" "^1.2.1"
-    core-js "^3.0.1"
-    global "^4.3.2"
     memoizerific "^1.11.3"
     qs "^6.6.0"
 
