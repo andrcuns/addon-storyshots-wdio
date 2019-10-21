@@ -1500,10 +1500,21 @@
     webpack-dev-middleware "^3.7.0"
     webpack-hot-middleware "^2.25.0"
 
-"@storybook/node-logger@5.2.3", "@storybook/node-logger@^5.1.9":
+"@storybook/node-logger@5.2.3":
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.2.3.tgz#cb746dbe0d1e56d905bf5601d16bb3a054123792"
   integrity sha512-5p+5ltLdr7cZTSCG+vdIMDLHq5AAaL/CQ/bygjl+Rw/RSpvBO5Rg8hryszFyhogToHJbn2JinUbypLA+P6tcuQ==
+  dependencies:
+    chalk "^2.4.2"
+    core-js "^3.0.1"
+    npmlog "^4.1.2"
+    pretty-hrtime "^1.0.3"
+    regenerator-runtime "^0.12.1"
+
+"@storybook/node-logger@^5.1.9":
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.2.4.tgz#52dc380c76bdac68de35e7d72efe920c3ba52a23"
+  integrity sha512-4OOzce02IAfrRv+Y7h3icyw6WIuDekpWF2eYjgYVVvAJYklCEwgeBTBCY0/2TJjPPTBDPUKHVP1Bdz3Vpci9pA==
   dependencies:
     chalk "^2.4.2"
     core-js "^3.0.1"
