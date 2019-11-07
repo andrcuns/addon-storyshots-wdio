@@ -1,0 +1,33 @@
+name: Test and Publish
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install
+        run: yarn install
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Unit test
+        run: yarn test
+
+      - name: Integration test
+        run: ./integration-test.sh
+
+      - name: Publish
+        run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
