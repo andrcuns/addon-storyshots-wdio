@@ -2,16 +2,18 @@ name-template: '$NEXT_MINOR_VERSION'
 tag-template: '$NEXT_MINOR_VERSION'
 categories:
   - title: '🚀 New Features'
-    label: 'type:new feature'
+    label: 'new feature'
   - title: '🔬 Improvements'
-    label: 'type:enhancement'
+    label: 'enhancement'
   - title: '🐞 Bug Fixes'
-    label: 'type:bug'
+    label: 'bug'
   - title: '📦 Dependency updates'
-    label: 'type:dependency'
+    label: 'dependencies'
+  - title: '📄 Documentation updates'
+    label: 'documentation'
 
 change-template: '* $TITLE (via #$NUMBER) - @$AUTHOR'
 template: |
   $CHANGES
   ## 👀 Links
-  [Commits since $PREVIOUS_TAG](https://github.com/allure-framework/allure-ruby/compare/$PREVIOUS_TAG...master)
+  [Commits since $PREVIOUS_TAG](https://github.com/andrcuns/addon-storyshots-wdio/compare/$PREVIOUS_TAG...master)
