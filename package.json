@@ -1,6 +1,6 @@
 {
   "name": "addon-storyshots-wdio",
-  "version": "5.1.15",
+  "version": "5.2.5",
   "description": "Image snappshots addition to StoryShots base on WebdriverIO",
   "keywords": [
     "addon",
