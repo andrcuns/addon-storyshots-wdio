@@ -1,8 +1,8 @@
 # storyshots-wdio
 
-![Workflow status](https://github.com/andrcuns/addon-storyshots-wdio/workflows/Test%20and%20Publish/badge.svg)
-![Version](https://badge.fury.io/js/addon-storyshots-wdio.svg)
-![npm](https://img.shields.io/npm/dm/addon-storyshots-wdio.svg)
+![Workflow status](https://github.com/andrcuns/addon-storyshots-wdio/workflows/Test/badge.svg)
+[![Version](https://badge.fury.io/js/addon-storyshots-wdio.svg)](https://www.npmjs.com/package/addon-storyshots-wdio)
+[![npm](https://img.shields.io/npm/dm/addon-storyshots-wdio.svg)](https://www.npmjs.com/package/addon-storyshots-wdio)
 
 Adaptation of [storyshots-puppeteer](https://github.com/storybookjs/storybook/tree/next/addons/storyshots/storyshots-puppeteer)
 addon which uses [WebdriverIO](https://webdriver.io/) for a wider browser support.
