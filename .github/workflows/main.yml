@@ -1,4 +1,4 @@
-name: Test and Publish
+name: Test
 
 on:
   pull_request:
@@ -7,27 +7,25 @@ on:
   push:
     branches:
       - master
-    tags:
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: 12
+
       - name: Install
         run: yarn install
       - name: Lint
+
         run: yarn lint
       - name: Unit test
         run: yarn test
+
       - name: Integration test
         run: ./integration-test.sh
-      - name: Publish
-        run: yarn publish
-        if: contains(github.ref, 'refs/tags') && success()
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
