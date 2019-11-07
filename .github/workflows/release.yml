@@ -28,6 +28,7 @@ jobs:
         run: ./integration-test.sh
 
       - name: Publish
+        uses: actions/setup-node@v1
         run: yarn publish
         env:
-          NPM_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
