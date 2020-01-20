@@ -1463,9 +1463,9 @@
     regenerator-runtime "^0.13.3"
 
 "@storybook/node-logger@^5.2.5":
-  version "5.3.5"
-  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.3.5.tgz#412e6fc76c2e76e458121d76cd128e51b1a65ddc"
-  integrity sha512-kTXUTKNwLr+sofFJlM7iLc3C5b1JctL9T06fQZ7rMHKvDj5fQA4tQB2nLO1DcGm97k7PBo2khJwLouAW9Fvojg==
+  version "5.3.6"
+  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.3.6.tgz#6fd62d46ba6972e332bf5da290f87fae971645e2"
+  integrity sha512-NqymsJCArX1TIAe6Hs5hS5PGI57Yrz7UqyRtPMiOoNhWVkAyFip+hGbHbA3Qe4dQCirBK0F9tSZ96Xy5wvVRNg==
   dependencies:
     chalk "^3.0.0"
     core-js "^3.0.1"
