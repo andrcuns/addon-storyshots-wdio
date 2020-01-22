@@ -1651,7 +1651,7 @@
   dependencies:
     lodash "^4.17.15"
 
-"@storybook/node-logger@5.3.7", "@storybook/node-logger@^5.2.5":
+"@storybook/node-logger@5.3.7":
   version "5.3.7"
   resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.3.7.tgz#cdbd6560c8f2067cc8993bfe21f024c195789793"
   integrity sha512-l59EoDorDkwEX7KOtBmNapsuoX3huWAFj1cyOS41mqoXhlpuIWoOQSiKHRlFA3/6g+p1NSbF5+Wr4k6xsIkUww==
@@ -1663,7 +1663,7 @@
     pretty-hrtime "^1.0.3"
     regenerator-runtime "^0.13.3"
 
-"@storybook/node-logger@5.3.8":
+"@storybook/node-logger@5.3.8", "@storybook/node-logger@^5.2.5":
   version "5.3.8"
   resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.3.8.tgz#dd6bfba5532adece7e387457ed8077edde008a20"
   integrity sha512-/UL3fOWRRAR7zMP+66Bqn3wJPkzj5AtnBDHqqkhzFM/sqMn+fvJUXqxNm9C3+CVG1RtgFQ9qLPyb16LZ596a6A==
