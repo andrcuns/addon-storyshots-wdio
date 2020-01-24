@@ -1,10 +1,6 @@
-import { toId } from '@storybook/router/utils';
-
 import { URL } from 'url';
 
-export const constructUrl = (storybookUrl, kind, story) => {
-  const id = toId(kind, story);
-
+export const constructUrl = (storybookUrl, id) => {
   const storyUrl = `/iframe.html?id=${id}`;
   const { protocol, host, pathname, search } = new URL(storybookUrl);
   const pname = pathname.replace(/\/$/, ''); // removes trailing /
