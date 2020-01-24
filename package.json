@@ -1,6 +1,6 @@
 {
   "name": "addon-storyshots-wdio",
-  "version": "5.3.8",
+  "version": "5.3.9",
   "description": "Image snappshots addition to StoryShots base on WebdriverIO",
   "keywords": [
     "addon",
@@ -45,8 +45,8 @@
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
-    "@storybook/react": "^5.2.5",
     "@storybook/csf": "~0.0.1",
+    "@storybook/react": "^5.2.5",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^25.1.0",
     "babel-loader": "^8.0.6",
