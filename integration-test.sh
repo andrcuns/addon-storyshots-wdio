@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 yarn build-storybook
 
 docker run -d --name=grid -p 4444:24444 \
