@@ -37,14 +37,14 @@ export const imageSnapshot = (customConfig = {}) => {
   let browser;
 
   const testFn = async ({ context }) => {
-    const { kind, framework, name } = context;
+    const { kind, framework, name, id } = context;
     if (framework === 'rn') {
       // Skip tests since we de not support RN image snapshots.
       logger.error("It seems you are running imageSnapshot on RN app and it's not supported. Skipping test.");
 
       return;
     }
-    const url = constructUrl(storybookUrl, kind, name);
+    const url = constructUrl(storybookUrl, id);
 
     if (!browser) {
       logger.error(`Error when generating image snapshot for test ${kind} - ${name} : browser object is missing.`);
