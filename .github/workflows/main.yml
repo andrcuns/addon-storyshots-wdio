@@ -21,9 +21,13 @@ jobs:
 
       - name: Install
         run: yarn install
-      - name: Lint
+      
+      - name: Build
+        run: yarn build
 
+      - name: Lint
         run: yarn lint
+      
       - name: Unit test
         run: yarn test
 
