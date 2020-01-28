@@ -1,6 +1,7 @@
 # storyshots-wdio
 
 ![Workflow status](https://github.com/andrcuns/addon-storyshots-wdio/workflows/Test/badge.svg)
+![Release](https://github.com/andrcuns/addon-storyshots-wdio/workflows/Release/badge.svg?branch=master)
 [![Version](https://badge.fury.io/js/addon-storyshots-wdio.svg)](https://www.npmjs.com/package/addon-storyshots-wdio)
 [![npm](https://img.shields.io/npm/dm/addon-storyshots-wdio.svg)](https://www.npmjs.com/package/addon-storyshots-wdio)
 
