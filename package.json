@@ -36,7 +36,7 @@
     "@storybook/node-logger": "^5.3.8",
     "@storybook/router": "^5.3.8",
     "core-js": "^3.4.0",
-    "jest-image-snapshot": "^2.11.0",
+    "jest-image-snapshot": "^3.0.0",
     "regenerator-runtime": "^0.13.3",
     "webdriverio": "^5.16.3"
   },
