@@ -38,7 +38,7 @@
     "core-js": "^3.4.0",
     "jest-image-snapshot": "^3.0.1",
     "regenerator-runtime": "^0.13.3",
-    "webdriverio": "^5.16.3"
+    "webdriverio": "^6.0.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",
