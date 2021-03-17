@@ -5,7 +5,9 @@
   "keywords": [
     "addon",
     "storybook",
-    "webdriverio"
+    "webdriverio",
+    "storybook-addon",
+    "test"
   ],
   "author": "Andrejs Cunskis",
   "files": [
@@ -59,5 +61,8 @@
     "react-dom": "^16.11.0",
     "react-test-renderer": "^16.11.0",
     "rimraf": "^3.0.0"
+  },
+  "storybook": {
+    "displayName": "WebdriverIO"
   }
 }
